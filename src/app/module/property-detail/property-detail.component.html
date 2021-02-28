@@ -1,0 +1,25 @@
+<div *ngIf="propertyDetail">
+    <div class="card">
+        <div class="card-header">
+            {{propertyDetail.name}}
+        </div>
+        <div class="card-body">
+            <carousel>
+                <slide *ngFor="let item of propertyDetail.propertyImage" style="max-height: 400px;">
+                    <img [src]="item.URL" alt="Property Image"
+                        style="display: block; width: 100%; max-height: 400px; object-fit: cover;">
+                </slide>
+            </carousel>
+            <p class="card-text mt-3">{{propertyDetail.description}}</p>
+            <div class="card-text"><b>Address:</b> {{propertyDetail.address}}</div>
+            <div class="card-text"><b>Locality:</b> {{propertyDetail.locality}}</div>
+            <div class="card-text"><b>Price:</b> {{propertyDetail.price}}</div>
+            <div class="card-text"><b>Bathroom:</b> {{propertyDetail.bathRoomCount}}</div>
+            <div class="card-text"><b>Bedroom:</b> {{propertyDetail.bedRoomCount}}</div>
+            <div class="card-text"><b>Carpet Area:</b> {{propertyDetail.carpetArea}} {{propertyDetail.carpetAreaType}}</div>
+            <div class="card-text"><b>Total Views:</b> {{propertyDetail.viewCount}}</div>
+            <fa-icon [icon]="propertyDetail.isFavourite ? solidStar : regularStar"></fa-icon>
+        </div>
+    </div>
+</div>
+<div *ngIf="!propertyDetail">No Data Found</div>

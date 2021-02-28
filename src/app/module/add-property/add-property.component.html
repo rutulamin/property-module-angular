@@ -1,0 +1,128 @@
+<nav class="navbar navbar-light bg-light mb-3">
+  <div class="container-fluid">
+    <a class="navbar-brand" [routerLink]="[ROUTE_PATH.ADD_PROPERTY]">Go to list property page</a>
+  </div>
+</nav>
+<form [formGroup]="propertyForm">
+    <div class="form-group">
+      <label>Property Name</label>
+      <input type="text" class="form-control" placeholder="Property Name" formControlName="name">
+      <div class="d-block invalid-feedback" *ngIf="isSubmitted && formControls.name.errors">
+        <small *ngIf="formControls.name.errors!.required">
+          Property name is required
+        </small>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Property Description</label>
+      <textarea formControlName="description" class="form-control" placeholder="Property Description" cols="30" rows="4"></textarea>
+      <div class="d-block invalid-feedback" *ngIf="isSubmitted && formControls.description.errors">
+        <small *ngIf="formControls.description.errors!.required">
+          Property description is required
+        </small>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Property Images</label>
+      <div class="d-flex mb-2">
+        <div class="property-image mr-2" *ngFor="let item of imageList">
+          <img [src]="item.src" />
+        </div>
+      </div>
+      <input #imageInput type="file" class="form-control" name="image" (change)="onFileSelect($event)"
+        multiple="true" accept="image/x-png,image/jpeg"> 
+      <div class="d-block invalid-feedback" *ngIf="isSubmitted && imageList.length === 0">
+        <small>
+          Property image is required
+        </small>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Address</label>
+      <input type="text" class="form-control" placeholder="Address" formControlName="address">
+      <div class="d-block invalid-feedback" *ngIf="isSubmitted && formControls.address.errors">
+        <small *ngIf="formControls.address.errors!.required">
+          Address is required
+        </small>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Locality</label>
+      <select class="form-control" formControlName="localityId">
+        <option [value]="null" disabled>Select Locality</option>
+        <option *ngFor="let item of localityList" [value]="item.id">{{ item.name }}</option>
+      </select>
+      <div class="d-block invalid-feedback" *ngIf="isSubmitted && formControls.localityId.errors">
+        <small *ngIf="formControls.localityId.errors!.required">
+          Locality is required
+        </small>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Price</label>
+      <input type="text" class="form-control" placeholder="Price" formControlName="price">
+      <div class="d-block invalid-feedback" *ngIf="isSubmitted && formControls.price.errors">
+        <small *ngIf="formControls.price.errors!.required">
+          Price is required
+        </small>
+        <small *ngIf="formControls.price.errors!.pattern || formControls.price.errors!.maxlength">
+          Price is not valid
+        </small>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Bedroom</label>
+      <select class="form-control" formControlName="bedroomCountId">
+        <option [value]="null" disabled>Select Bedroom</option>
+        <option *ngFor="let item of bedroomCountList" [value]="item.id">{{ item.number }}</option>
+      </select>
+      <div class="d-block invalid-feedback" *ngIf="isSubmitted && formControls.bedroomCountId.errors">
+        <small *ngIf="formControls.bedroomCountId.errors!.required">
+          Bedroom is required
+        </small>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Bathroom</label>
+      <select class="form-control" formControlName="bathroomCountId">
+        <option [value]="null" disabled>Select Bathroom</option>
+        <option *ngFor="let item of bathroomCountList" [value]="item.id">{{ item.number }}</option>
+      </select>
+      <div class="d-block invalid-feedback" *ngIf="isSubmitted && formControls.bathroomCountId.errors">
+        <small *ngIf="formControls.bathroomCountId.errors!.required">
+          Bathroom is required
+        </small>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <div class="form-group">
+          <label>Carpet Area</label>
+          <input type="text" class="form-control" placeholder="Carpet Area" formControlName="carpetArea">
+          <div class="d-block invalid-feedback" *ngIf="isSubmitted && formControls.carpetArea.errors">
+            <small *ngIf="formControls.carpetArea.errors!.required">
+              Carpet area is required
+            </small>
+            <small *ngIf="formControls.carpetArea.errors!.pattern || formControls.carpetArea.errors!.maxlength">
+              Carpet area is not valid
+            </small>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group">
+          <label>Carpet Area Type</label>
+          <select class="form-control" formControlName="carpetAreaTypeId">
+            <option [value]="null" disabled>Select Carpet Area Type</option>
+            <option *ngFor="let item of carpetAreaTypeList" [value]="item.id">{{ item.type }}</option>
+          </select>
+          <div class="d-block invalid-feedback" *ngIf="isSubmitted && formControls.carpetAreaTypeId.errors">
+            <small *ngIf="formControls.carpetAreaTypeId.errors!.required">
+              Carpet area type is required
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button type="button" class="btn btn-primary" (click)="onAddProperty()">Submit</button>
+  </form>

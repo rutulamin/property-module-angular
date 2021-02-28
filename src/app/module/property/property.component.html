@@ -1,0 +1,16 @@
+<nav class="navbar navbar-light bg-light mb-3">
+    <div class="container-fluid">
+      <a class="navbar-brand" [routerLink]="[ROUTE_PATH.ADD_PROPERTY]">Go to Add property page</a>
+    </div>
+</nav>
+<div class="row">
+    <div class="col-3">
+        <app-filter-property></app-filter-property>
+    </div>
+    <div class="col-6">
+        <app-list-property></app-list-property>
+    </div>
+    <div class="col-3">
+        <app-recent-property></app-recent-property>
+    </div>
+</div>
