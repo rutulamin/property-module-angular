@@ -14,5 +14,5 @@ export const RoutePath = {
 
 export const Constants = {
     PAGE: 1,
-    LIMIT: 5,
-}
+    LIMIT: 10,
+};
