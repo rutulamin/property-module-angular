@@ -148,8 +148,8 @@ export class AddPropertyComponent implements OnInit {
         const resData = await this.addPropertyService.addPropertyData(formData);
         this.helperService.showSuccessToast(resData.message);
         this.helperService.hideLoading();
+        this.router.navigate(['']);
       }
-      this.router.navigate(['']);
     } catch (err) {
       this.helperService.hideLoading();
       this.helperService.showErrorToast(err.error);
